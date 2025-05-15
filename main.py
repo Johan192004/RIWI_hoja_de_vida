@@ -1,2 +1,2 @@
-print("Hola Buenas Tardes Compañeros ")
+print("Hola mis perras ")
 
