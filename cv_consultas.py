@@ -21,7 +21,9 @@ def search_cvs(query = "", experiencia_min = None, formacion = None, habilidad =
 
             resultados.append(cv)
     return resultados
-        
+SUCCESS = "\033[92m"    
+RESET = "\033[0m"
+DANGER = "\033[91m"
 def show_cv(cv):
     print(f"Nombre: {cv['name']}")
     print(f"Documento: {cv['document']}")
@@ -29,14 +31,14 @@ def show_cv(cv):
     print(f"Experiencia: {cv['experiencia']} años")
     print(f"Formación: {cv['formacion']}")
     print(f"Habilidades: {', '.join(cv['habilidades'])}")
-    print("-" * 40)
+    print(DANGER + "-" * 44 + RESET)
 
 def menu():
     print("=== CONSULTA DE HOJAS DE VIDA ===")
     query = input("Buscar por nombre, documento o correo: ").strip()
     exp = input("Experiencia mínima (dejar en blanco si no aplica): ").strip()
     formacion = input("Formación requerida (Técnico / Profesional / Posgrado): ").strip()
-    formacion = verifyName(formacion)
+    #formacion = verifyName(formacion)
     habilidad = input("Habilidad específica (ej. Python): ").strip()
 
     experiencia_min = int(exp) if exp.isdigit() else None
