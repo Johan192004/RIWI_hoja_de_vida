@@ -33,7 +33,7 @@ def verifyName(name, message):
     while 1:
 
 
-        name = verifyEmpty(name,message)
+        name = verifyEmpty(name,message)[1]
         
 
         if all(x.isalpha() or x.isspace() for x in name):

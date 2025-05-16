@@ -6,13 +6,15 @@ addresses = {}
 def add_cv(dict):
 
 
-    documet = input("Ingrese el documento")
+    documet = input("Ingrese el numero de documento: ")
     documet = verifyInt(documet,"Ingrese un numero de documento valido: ")
 
     if documet not in dict.keys():
 
+        print("\nInformacion personal\n")
+
         name = input("Ingrese su nombre: ")
-        name = verifyName(name)
+        name = verifyName(name, "Ingrese su nombre: ")
 
         cellPhone = input("Ingrese su numero de telefono: ")
         cellPhone = verifyInt(cellPhone,"Ingrese un numero de telefono valido: ") ###
@@ -75,6 +77,8 @@ def add_cv(dict):
 
 
         ### Academic
+        print("\nFormacion academica\n")
+
 
         institution = input("Ingrese el nombre de la institucion: ")
         institution = verifyName(institution, "Ingrese el nombre de la institucion: ")
@@ -92,6 +96,8 @@ def add_cv(dict):
 
         
         ### Work
+        print("\nExperiencia laboral\n")
+
 
         company = input("Ingrese el nombre de la compañia: ")
         company = verifyName(company, "Ingrese el titulo que obtuvo: ")
@@ -107,6 +113,8 @@ def add_cv(dict):
         duration = verifyInt(duration, "Ingresa la duracion en meses: ")
 
         ### Personal references
+        print("\nReferencia personal\n")
+
 
         namePersonal = input("Ingrese el nombre de la referencia personal: ")
         namePersonal = verifyName(namePersonal, "Ingrese el nombre de la referencia personal: ")
@@ -118,6 +126,8 @@ def add_cv(dict):
         PhoneNumberPersonal = verifyInt(PhoneNumberPersonal, "Ingrese el numero de telefono de la referencia personal: ")
 
         ### Work references
+        print("\nReferencia laboral\n")
+
 
 
         nameWork = input("Ingrese el nombre de la referencia laboral: ")
@@ -131,11 +141,15 @@ def add_cv(dict):
 
 
         ### skills
+        print("\nHabilidades\n")
+        
 
         skill = input("Ingrese una habilidad suya: ")
         skill = verifyName(skill, "Ingrese una habilidad suya: ")
 
         ### certifications
+        print("\nCertificados\n")
+
 
         certification = input("Ingrese un certificado que haya obtenido: ")
         certification = verifyName(certification, "Ingrese un certificado que haya obtenido: ")
@@ -176,13 +190,3 @@ def add_cv(dict):
 
 
         }
-
-
-
-        
-
-
-
-
-
-
