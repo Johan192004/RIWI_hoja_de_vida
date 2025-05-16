@@ -1,0 +1,19 @@
+[   
+    {
+        "name": "Johana Ramirez",
+        "document": "123456789",
+        "email": "johana@gmail.com",
+        "experiencia": 6,
+        "formacion": "Profesional",
+        "habilidades": ["Python", "SQL", "Analisis de datos"]
+    },
+    {
+        "name": "Pipe Marin",
+        "document": "987654321",
+        "email": "pipe@gmail.com",
+        "experiencia": 3,
+        "formacion": "Tecnico",
+        "habilidades": ["Java", "HTML", "CSS"]
+
+    }
+]
