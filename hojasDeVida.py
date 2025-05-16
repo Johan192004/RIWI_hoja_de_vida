@@ -1,6 +1,6 @@
 emails = set()
 
-CVs = {("document"):
+CVs = {10358:
        {
            "personalInfo":
            {
@@ -8,7 +8,7 @@ CVs = {("document"):
            "phoneNumber":321432543,
            "address":"CR 54",
            "email":"k@l.com",
-           "birthAge":(2000)
+           "dateAge":("day","month","year")
            },
 
            "academicEductaion":[
@@ -16,7 +16,7 @@ CVs = {("document"):
            ],
 
             "profesionalExperience":[
-                ("company","job","functions","length")
+                ("company","job","functions","duration")
             ],
 
             "personalReferences":[
