@@ -1,4 +1,5 @@
-from verifies import *
+from datetime import date
+from verifies import verifyInt, verifyName, verifyEmail, verifyEmpty, verifyRange, daysMonth
 
 addresses = {}
 
@@ -107,11 +108,76 @@ def add_cv(dict):
 
         ### Personal references
 
-        name = input("Ingrese el nombre de la referencia personal: ")
-        name = verifyName(name, "Ingrese el nombre de la referencia personal: ")
+        namePersonal = input("Ingrese el nombre de la referencia personal: ")
+        namePersonal = verifyName(namePersonal, "Ingrese el nombre de la referencia personal: ")
 
-        relation = input("Ingrese el parentesco de la referencia personal: ")
-        relation = verifyName(relation, "Ingrese el parentesco de la referencia personal: ")
+        relationPersonal = input("Ingrese el parentesco de la referencia personal: ")
+        relationPersonal = verifyName(relationPersonal, "Ingrese el parentesco de la referencia personal: ")
+
+        PhoneNumberPersonal = input("Ingrese el numero de telefono de la referencia personal: ")
+        PhoneNumberPersonal = verifyInt(PhoneNumberPersonal, "Ingrese el numero de telefono de la referencia personal: ")
+
+        ### Work references
+
+
+        nameWork = input("Ingrese el nombre de la referencia laboral: ")
+        nameWork = verifyName(nameWork, "Ingrese el nombre de la referencia laboral: ")
+
+        relationWork = input("Ingrese el parentesco de la referencia laboral: ")
+        relationWork = verifyName(relationWork, "Ingrese el parentesco de la referencia laboral: ")
+
+        PhoneNumberWork = input("Ingrese el numero de telefono de la referencia laboral: ")
+        PhoneNumberWork = verifyInt(PhoneNumberWork, "Ingrese el numero de telefono de la referencia laboral: ")
+
+
+        ### skills
+
+        skill = input("Ingrese una habilidad suya: ")
+        skill = verifyName(skill, "Ingrese una habilidad suya: ")
+
+        ### certifications
+
+        certification = input("Ingrese un certificado que haya obtenido: ")
+        certification = verifyName(certification, "Ingrese un certificado que haya obtenido: ")
+
+
+        dict[documet] = {
+            "personalInfo":{
+                "name":name,
+                "phoneNumber": cellPhone,
+                "address": address,
+                "email": email,
+                "dateAge":dateAge
+            },
+
+            "academicEducation":[
+                (institution,title,f"{startYear} -- {finishYear}")
+            ],
+
+            "profesionalExperience":[
+                (company, job, responsability, duration)
+            ],
+
+            "personalReferences":[
+                (namePersonal, relationPersonal, PhoneNumberPersonal)
+            ],
+
+            "workReferences":[
+                (nameWork, relationWork, PhoneNumberWork)
+            ],
+
+            "skills":set(
+                skill
+            ),
+
+            "certifications":set(
+                certification
+            )
+
+
+        }
+
+
 
         
 
