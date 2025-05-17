@@ -244,39 +244,39 @@ def export_single_cv_json(filename, document_id, cvs_data):
 
 def menu_3():
 
-    while 1:
 
-        doc = input("Ingrese el documento de la cv la cual modificara: ")
-        doc = verifyInt(doc, "Ingrese el documento de la cv la cual modificara: ")
-        doc = str(doc)
 
-        if doc in CVs.keys():
-            print("¿Que desea actualizar?")
-            print("1. Editar Datos personales")
-            print("2. Añadir Formacion Academica")
-            print("3. Añadir Experiencia profesional")
-            print("4. Cambiar o Agregar Habilidades ")
-            print("5 Cambiar o Agregar Referencias")
-            print("6. Salir")
-            
-            opcion= input("Elije una opcion (1-5): ")
-                
-            match opcion:
-                case "1":
-                    editar_datos_person(CVs[doc]["personalInfo"])
-                case "2":
-                    agg_formacion(CVs[doc])
-                case "3":
-                    profesionalExperience(CVs[doc])
-                case "4":
-                    skills(CVs[doc])
-                case "5":
-                    certifications(CVs[doc])
-                case "6":
-                    break
+    doc = input("Ingrese el documento de la cv la cual modificara: ")
+    doc = verifyInt(doc, "Ingrese el documento de la cv la cual modificara: ")
+    doc = str(doc)
+
+    if doc in CVs.keys():
+        print("¿Que desea actualizar?")
+        print("1. Editar Datos personales")
+        print("2. Añadir Formacion Academica")
+        print("3. Añadir Experiencia profesional")
+        print("4. Cambiar o Agregar Habilidades ")
+        print("5 Cambiar o Agregar Referencias")
+        print("6. Salir")
         
-        else:
-            print(f"No se encontro un cv con documento {doc}")
+        opcion= input("Elije una opcion (1-6): ")
+            
+        match opcion:
+            case "1":
+                editar_datos_person(CVs[doc]["personalInfo"])
+            case "2":
+                agg_formacion(CVs[doc])
+            case "3":
+                profesionalExperience(CVs[doc])
+            case "4":
+                skills(CVs[doc])
+            case "5":
+                certifications(CVs[doc])
+            case "6":
+                pass
+    
+    else:
+        print(f"No se encontro un cv con documento {doc}")
         
         
             
@@ -288,22 +288,22 @@ def editar_datos_person(CVs):
     print("4 Correo")
     print("5 salir")    
     
-    opcion= input("Opcion: ").strip().lower()
+    opcion= input("Opcion: ")
     
-    if opcion in CVs:
+
         
-        if opcion == "1":
-            CVs["name"] = input("Nuevo nombre: ")         
-        elif opcion == "2":
-            CVs["phoneNumber"]= int(input("Nuevo Contacto: "))
-        elif opcion == "3":
-            CVs["address"]= input("Niueva Direccion")
-        elif opcion == "4":
-            CVs["email"]= input("Nuevo Correo")     
-        elif opcion == "5":
-            menu_3()        
-        else: 
-            print("Opcion Invalido")
+    if opcion == "1":
+        CVs["name"] = input("Nuevo nombre: ")         
+    elif opcion == "2":
+        CVs["phoneNumber"]= int(input("Nuevo Contacto: "))
+    elif opcion == "3":
+        CVs["address"]= input("Niueva Direccion: ")
+    elif opcion == "4":
+        CVs["email"]= input("Nuevo Correo: ")     
+    elif opcion == "5":
+        menu_3()        
+    else: 
+        print("Opcion Invalido")
         
 def agg_formacion(CVs):
     title  = input("Titulo Obtenido: ")
