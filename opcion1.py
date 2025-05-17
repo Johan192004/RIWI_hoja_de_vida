@@ -107,7 +107,7 @@ def add_cv(dict):
 
 
         responsability = input("Ingresa las funciones en tu cargo: ")
-        responsability = verifyEmpty(responsability, "Ingresa las funciones en tu cargo: ")
+        responsability = verifyEmpty(responsability, "Ingresa las funciones en tu cargo: ")[1]
 
         duration = input("Ingresa la duracion en meses: ")
         duration = verifyInt(duration, "Ingresa la duracion en meses: ")
@@ -180,13 +180,13 @@ def add_cv(dict):
                 (nameWork, relationWork, PhoneNumberWork)
             ],
 
-            "skills":set(
+            "skills":{
                 skill
-            ),
+            }    ,
 
-            "certifications":set(
+            "certifications":{
                 certification
-            )
+            }
 
 
         }
