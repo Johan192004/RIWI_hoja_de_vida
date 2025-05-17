@@ -389,6 +389,8 @@ def menu_2():
 
 while 1:
 
+    print("Bienvenido a VitaeCoonsole")
+    print("=========== Menu Principal =============")
     print("1. Registrar una hoja de vida completa: ")
     print("2. Consultar hojas de vida")
     print("3. Actualizar informacion registrada")
@@ -396,9 +398,9 @@ while 1:
     print("5. Exportar cv en pdf")
     print("6. Salir")
 
-    option = input("Selecciona una opcion del 1 al 5: ")
-    option = verifyInt(option, "Selecciona una opcion del 1 al 5: ")
-    option = verifyRange(1,6,option,"Selecciona una opcion del 1 al 5: ")
+    option = input("Selecciona una opcion del 1 al 6: ")
+    option = verifyInt(option, "Selecciona una opcion del 1 al 6: ")
+    option = verifyRange(1,6,option,"Selecciona una opcion del 1 al 6: ")
 
     if option == 1:
         add_cv(CVs)
