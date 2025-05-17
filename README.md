@@ -2,10 +2,10 @@
 1 NOMBRE DEL PROGRAMA: VitaeCoonsole (CVs)
 
 2 INTEGRANTES
-- Johan Ramirez Marin
-- Andres Felipe Marin Patiño
+- Johan Ramirez Marin(van rosumm)
+- Andres Felipe Marin Patiño (ritchie)
 - Brahiam Ruiz Alzate(van rosumm)
-- Juan Daniel Rua Marin
+- Juan Daniel Rua Marin (van rosumm)
 
 3 DESCRIPCION GENERAL DEL PROGRAMA: 
 VitaeConsole es un programa hecho en Python que funciona desde la consola. Su objetivo es ayudar a registrar, ver, actualizar y eliminar hojas de vida (CVs). Está pensado para ser fácil de usar y manejar información básica como nombre, edad, nivel de estudios, experiencia y habilidades.
@@ -67,6 +67,18 @@ Trabajo en equipo
 --- Certificaciones ---
 Curso Excel Intermedio
 Certificado Python Inicial
+
+DATOS DE SALIDA
+
+Bienvenido a VitaeCoonsole
+=========== Menu Principal =============
+1. Registrar una hoja de vida completa:
+2. Consultar hojas de vida
+3. Actualizar informacion registrada
+4. Generar reportes
+5. Exportar cv en pdf
+6. Salir
+Selecciona una opcion del 1 al 6:
 
 7 CAPTURA DEL TABLERO DE TRABAJO
 
