@@ -1,6 +1,9 @@
 
 
     
+from verifies import verifyInt
+
+
 CVs = {10352:
         {
             "personalInfo":
@@ -40,29 +43,45 @@ CVs = {10352:
         
 
 
-def menu():
-    while True:
-        print("¿Que desea actualizar?")
-        print("1. Editar Datos personales")
-        print("2. Añadir Formacion Academica")
-        print("3. Añadir Experiencia profesional")
-        print("4. Cambiar o Agregar Habilidades ")
-        print("5 Cambiar o Agregar Referencias")
-        
-        opcion= input("Elije una opcion (1-5): ")
+def menu_3():
+
+    while 1:
+
+        doc = input("Ingrese el documento de la cv la cual modificara: ")
+        doc = verifyInt(doc, "Ingrese el documento de la cv la cual modificara: ")
+        doc = str(doc)
+
+        if doc in CVs.keys():
+            print("¿Que desea actualizar?")
+            print("1. Editar Datos personales")
+            print("2. Añadir Formacion Academica")
+            print("3. Añadir Experiencia profesional")
+            print("4. Cambiar o Agregar Habilidades ")
+            print("5 Cambiar o Agregar Referencias")
+            print("6. Salir")
             
-        match opcion:
-            case "1":
-                aditar_datos_person(CVs)
-            case "2":
-                agg_formacion(CVs)
-            case "3":
-                profesionalExperience(CVs)
-            case "4":
-                pass    
+            opcion= input("Elije una opcion (1-5): ")
+                
+            match opcion:
+                case "1":
+                    editar_datos_person(CVs[doc]["personalInfo"])
+                case "2":
+                    agg_formacion(CVs[doc])
+                case "3":
+                    profesionalExperience(CVs[doc])
+                case "4":
+                    skills(CVs[doc])
+                case "5":
+                    certifications(CVs[doc])
+                case "6":
+                    break
+        
+        else:
+            print(f"No se encontro un cv con documento {doc}")
+        
         
             
-def aditar_datos_person(CVs):
+def editar_datos_person(CVs):
     print("Que desea Actualizar")
     print("1 Nombre")
     print("2 Contacto")
@@ -75,15 +94,15 @@ def aditar_datos_person(CVs):
     if opcion in CVs:
         
         if opcion == "1":
-            CVs["nombre"] = input("Nuevo nombre: ")         
+            CVs["name"] = input("Nuevo nombre: ")         
         elif opcion == "2":
-            CVs["contacto"]= int(input("Nuevo Contacto: "))
+            CVs["phoneNumber"]= int(input("Nuevo Contacto: "))
         elif opcion == "3":
-            CVs["direccion"]= input("Niueva Direccion")
+            CVs["address"]= input("Niueva Direccion")
         elif opcion == "4":
-            CVs["Correo"]= input("Nuevo Correo")     
+            CVs["email"]= input("Nuevo Correo")     
         elif opcion == "5":
-            menu()        
+            menu_3()        
         else: 
             print("Opcion Invalido")
         
@@ -92,39 +111,41 @@ def agg_formacion(CVs):
     institute = input("Institucion: ")
     years = input("Año de finalizacion: ")
     
-    CVs["academicEductaion"].append({
-        "title":title,
-        "institute":institute,
-        "years":years
-    })
+    CVs["academicEducation"].append([
+        title,
+        institute,
+        years
+    ])
     
 def profesionalExperience(CVs):
     company= input("Ingrese el nombre de la empresa")
     job= input("Ingrese el cargo o puesto")
     length= input("Ingrese la duracion en la empresa ")
     
-    CVs["profesionalExperience"].append({
-        "company":company,
-        "job":job,
-        "length":length
-    })
+    CVs["profesionalExperience"].append([
+        company,
+        job,
+        length
+    ])
 
 
     
 def workReferences(CVs):
-    print=(f"Referencias actuales: {CVs['workReferences']} ")
+    print(f"Referencias actuales: {CVs['workReferences']} ")
     agg= input("Desea agregar alguna referencia (s/n): ")
     
     if agg.lower() == 's':
         name = input("Nombre de la referencia: ")
+        relation = input("Ingrese el parentesco con la referencia laboral: ")
         phoneNumber= input("Ingrese el cel: ")
-        CVs["workReferences"].append({
-            "name":name,
-            "phoneNumber":phoneNumber
-        })
+        CVs["workReferences"].append([
+            name,
+            relation,
+            phoneNumber
+        ])
     
 def skills(CVs):
-    print(f"Habilidades actuales: {CVs['skills']}")
+    print(f"Habilidades actuales: {CVs["skills"]}")
     agg= input("Desea agregar una habilidad? (s/n): ")
     
     if agg.lower() == 's':
@@ -133,17 +154,14 @@ def skills(CVs):
     
 
 def certifications(CVs):
-    print=(f"Certificaciones actuales: {CVs['certifications']} ")
+    print(f"Certificaciones actuales: {CVs['certifications']} ")
     agg= input("Desea agregar alguna certificacion (s/n): ")
     
     if agg.lower() == 's':
-        name = input("Nombre del certificado: ")
-        CVs["certifications"].append({
-    
-        })
+        certification = input("Nombre del certificado: ")
+        CVs["certifications"].append(certification)
         
-        
-menu()
+
     
     
     
