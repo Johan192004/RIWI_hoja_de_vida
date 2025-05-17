@@ -1,5 +1,5 @@
 
-    
+
     
 CVs = {10352:
         {
@@ -39,6 +39,7 @@ CVs = {10352:
         }}
         
 
+
 def menu():
     while True:
         print("¿Que desea actualizar?")
@@ -48,13 +49,13 @@ def menu():
         print("4. Cambiar o Agregar Habilidades ")
         print("5 Cambiar o Agregar Referencias")
         
-        opcion= input("Elije una opcion (1-4): ")
+        opcion= input("Elije una opcion (1-5): ")
             
         match opcion:
             case "1":
                 aditar_datos_person(CVs)
             case "2":
-                agregar_formacion(CVs)
+                agg_formacion(CVs)
             case "3":
                 profesionalExperience(CVs)
             case "4":
@@ -76,7 +77,7 @@ def aditar_datos_person(CVs):
         if opcion == "1":
             CVs["nombre"] = input("Nuevo nombre: ")         
         elif opcion == "2":
-            CVs["contacto"]= input("Nuevo Contacto: ")
+            CVs["contacto"]= int(input("Nuevo Contacto: "))
         elif opcion == "3":
             CVs["direccion"]= input("Niueva Direccion")
         elif opcion == "4":
@@ -86,7 +87,7 @@ def aditar_datos_person(CVs):
         else: 
             print("Opcion Invalido")
         
-def agregar_formacion(CVs):
+def agg_formacion(CVs):
     title  = input("Titulo Obtenido: ")
     institute = input("Institucion: ")
     years = input("Año de finalizacion: ")
@@ -140,7 +141,7 @@ def certifications(CVs):
         CVs["certifications"].append({
     
         })
-    
+        
         
 menu()
     
