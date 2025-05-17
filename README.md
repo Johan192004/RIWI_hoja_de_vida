@@ -81,7 +81,7 @@ Bienvenido a VitaeCoonsole
 Selecciona una opcion del 1 al 6:
 
 7 CAPTURA DEL TABLERO DE TRABAJO
-![Hola mundo](https://raw.githubusercontent.com/Johan192004/RIWI_hoja_de_vida/refs/heads/main/images.png)
+![Hola mundo](https://github.com/Johan192004/RIWI_hoja_de_vida/blob/main/Trello.PNG?raw=true)
 
 
 
