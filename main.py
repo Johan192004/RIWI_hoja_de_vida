@@ -1,5 +1,4 @@
 from opcion1 import *
-from hojasDeVida import *
 from verifies import *
 import json
 
