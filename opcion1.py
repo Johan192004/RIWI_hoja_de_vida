@@ -9,7 +9,7 @@ def add_cv(dict):
     documet = input("Ingrese el numero de documento: ")
     documet = verifyInt(documet,"Ingrese un numero de documento valido: ")
 
-    if documet not in dict.keys():
+    if str(documet) not in dict.keys():
 
         print("\nInformacion personal\n")
 
@@ -109,8 +109,8 @@ def add_cv(dict):
         responsability = input("Ingresa las funciones en tu cargo: ")
         responsability = verifyEmpty(responsability, "Ingresa las funciones en tu cargo: ")[1]
 
-        duration = input("Ingresa la duracion en meses: ")
-        duration = verifyInt(duration, "Ingresa la duracion en meses: ")
+        duration = input("Ingresa la duracion en años: ")
+        duration = verifyInt(duration, "Ingresa la duracion en años: ")
 
         ### Personal references
         print("\nReferencia personal\n")
@@ -155,7 +155,7 @@ def add_cv(dict):
         certification = verifyName(certification, "Ingrese un certificado que haya obtenido: ")
 
 
-        dict[documet] = {
+        dict[str(documet)] = {
             "personalInfo":{
                 "name":name,
                 "phoneNumber": cellPhone,

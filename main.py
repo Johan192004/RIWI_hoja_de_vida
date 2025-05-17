@@ -132,7 +132,7 @@ def show_cv(cv,id):
         print(f"Compañia: {j[0]}")
         print(f"Cargo: {j[1]}")
         print(f"Responsabilidades: {j[2]}")
-        print(f"Duracion en meses: {j[3]}")
+        print(f"Duracion en años: {j[3]}")
 
     print("\nReferencias personales\n")
     for k in cv["personalReferences"]:
