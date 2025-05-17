@@ -1,0 +1,53 @@
+{
+    "1323": {
+        "personalInfo": {
+            "name": "klfsdn",
+            "phoneNumber": 321213,
+            "address": "nfkjdsnf",
+            "email": "jkdsnf@.",
+            "dateAge": [
+                18,
+                10,
+                2004
+            ]
+        },
+        "academicEducation": [
+            [
+                "daskndjk",
+                "fnjskdnfjk",
+                "2007 -- 2023"
+            ]
+        ],
+        "profesionalExperience": [
+            [
+                "dnksand",
+                "njkdsf",
+                [
+                    true,
+                    "dnjksandk"
+                ],
+                32
+            ]
+        ],
+        "personalReferences": [
+            [
+                "nfdsjkf",
+                "njkfds",
+                3213
+            ]
+        ],
+        "workReferences": [
+            [
+                "njkfdsf",
+                "nfdksj",
+                3213
+            ]
+        ],
+        "skills": [
+            "fndskjf"
+        ],
+        "certifications": [
+            "fjdskkjdsf"
+        ]
+    }
+}

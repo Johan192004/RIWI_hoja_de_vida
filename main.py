@@ -1,10 +1,61 @@
-from operator import indexOf
 from opcion1 import *
 from hojasDeVida import *
 from verifies import *
 import json
 
 
+
+from reportlab.lib.pagesizes import LETTER
+from reportlab.pdfgen import canvas
+
+def generar_pdf_cv(data, document):
+    nombre_archivo = f"CV_{document}.pdf"
+    c = canvas.Canvas(nombre_archivo, pagesize=LETTER)
+    width, height = LETTER
+    y = height - 50
+
+    c.setFont("Helvetica-Bold", 20)
+    c.drawString(50, y, "Hoja de Vida")
+    y -= 40
+
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(50, y, f"Documento: {document}")
+    y -= 20
+
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(50, y, "Información Personal:")
+    y -= 20
+    c.setFont("Helvetica", 12)
+    for key, value in data["personalInfo"].items():
+        c.drawString(70, y, f"{key.capitalize()}: {value}")
+        y -= 20
+
+    y -= 10
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(50, y, "Formación Académica:")
+    y -= 20
+    for edu in data.get("academicEducation", []):
+        c.drawString(70, y, f"- {edu}")
+        y -= 20
+
+    y -= 10
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(50, y, "Habilidades:")
+    y -= 20
+    for skill in data.get("skills", []):
+        c.drawString(70, y, f"- {skill}")
+        y -= 20
+
+    y -= 10
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(50, y, "Certificaciones:")
+    y -= 20
+    for cert in data.get("certifications", []):
+        c.drawString(70, y, f"- {cert}")
+        y -= 20
+
+    c.save()
+    print(f"PDF generado: {nombre_archivo}")
 # CVs = {10358:
 #        {
 #            "personalInfo":
@@ -105,6 +156,94 @@ def show_cv(cv,id):
         print(f"-{u}")
 
 
+
+def list_cvc_superior_export():
+    if not CVs:
+        print("Aun no hay hojas de vida registradas")
+        return
+
+    try:
+        n = int(input("Ingrese el número de años de experiencia: "))
+    except ValueError:
+        print("Por favor, ingrese un número válido.")
+        return
+
+    reporte = {}
+
+    for document, data in CVs.items():
+        experiencie = data.get("profesionalExperience", [])
+        total_years = 0
+
+        for item in experiencie:
+            try:
+                total_years += int(item[3])
+            except (ValueError, IndexError):
+                continue
+
+        if total_years > n:
+            reporte[document] = data
+
+    if reporte:
+        with open("reporte_experiencia_superior.json", "w", encoding="utf-8") as file:
+            json.dump(reporte, file, indent=4, default=list)
+        print("Reporte exportado como 'reporte_experiencia_superior.json'")
+    else:
+        print(f"No se encontraron hojas de vida con más de {n} años de experiencia.")
+
+    
+def ncertif_nformation_export():
+    if not CVs:
+        print("Aun no hay hojas de vida registradas")
+        return
+
+    f = input("Ingrese el tipo de certificación o formación: ").strip()
+    if f == "":
+        print("CAMPO VACÍO: Por favor ingrese caracteres")
+        return
+
+    reporte = {}
+
+    for document, data in CVs.items():
+        name = data["personalInfo"]["name"]
+        
+        formation = data.get("academicEducation", [])
+        found_in_formation = any(f.lower() in str(item).lower() for item in formation)
+
+        skills = data.get("skills", set())
+        found_in_skills = any(f.lower() in skill.lower() for skill in skills)
+
+        certifications = data.get("certifications", set())
+        found_in_certifications = any(f.lower() in cert.lower() for cert in certifications)
+
+        if found_in_formation or found_in_skills or found_in_certifications:
+            reporte[document] = data
+
+    if reporte:
+        with open("reporte_formacion_certificacion.json", "w", encoding="utf-8") as file:
+            json.dump(reporte, file, indent=4, default=list)
+        print("Reporte exportado como 'reporte_formacion_certificacion.json'")
+    else:
+        print(f"No se encontraron hojas de vida relacionadas con '{f}'.")
+
+        
+def export_single_cv_json(filename, document_id, cvs_data):
+    def convert_sets(obj):
+        if isinstance(obj, set):
+            return list(obj)
+        return obj
+
+    if document_id in cvs_data:
+        single_cv = {document_id: cvs_data[document_id]}
+        with open(filename, "w", encoding="utf-8") as file:
+            json.dump(single_cv, file, indent=4, default=convert_sets)
+        print("Archivo exportado exitosamente como: ", filename)
+    else:
+        print("Documento no encontrado")
+
+
+    
+
+
 def menu_2():
 
     print("Que desea?")
@@ -178,7 +317,7 @@ def menu_2():
 
                 for key,value in CVs.items:
 
-                    if value["personalInfo"]["email"] == email:
+                    if value["personalInfo"]["email"] == e_mail:
 
                         show_cv(value,key)
 
@@ -254,11 +393,12 @@ while 1:
     print("2. Consultar hojas de vida")
     print("3. Actualizar informacion registrada")
     print("4. Generar reportes")
-    print("5. Salir")
+    print("5. Exportar cv en pdf")
+    print("6. Salir")
 
     option = input("Selecciona una opcion del 1 al 5: ")
     option = verifyInt(option, "Selecciona una opcion del 1 al 5: ")
-    option = verifyRange(1,5,option,"Selecciona una opcion del 1 al 5: ")
+    option = verifyRange(1,6,option,"Selecciona una opcion del 1 al 5: ")
 
     if option == 1:
         add_cv(CVs)
@@ -267,7 +407,45 @@ while 1:
     elif option == 3:
         pass
     elif option == 4:
-        pass
+        
+        print("1. Exportar cvs con n años de experiencia")
+        print("2. Exportar cvs con n skills o formacion")
+        print("3. Exportar cv con un documento especifico")
+        print("3. Salir")
+
+        option = input("Seleccione una opcion: ")
+        option = verifyInt(option, "Seleccione una opcion: ")
+        option = verifyRange(1,3,option,"Seleccione una opcion: ")
+
+        if option == 1:
+
+            list_cvc_superior_export()
+        
+        elif option == 2:
+            ncertif_nformation_export()
+        elif option == 3:
+            
+            id_do = input("Ingrese el numero de documento de la cv que desea exportar: ")
+            id_do = verifyInt(id_do, "Ingrese el numero de documento de la cv que desea exportar: ")
+            id_do = str(id_do)
+
+            if id_do in CVs.keys():
+                export_single_cv_json("reporte.json",id_do,CVs)
+            else:
+                print(f"Cv con documento {id_do} no encontrado")
+        else:
+            pass
+    elif option == 5:
+            id_do = input("Ingrese el numero de documento de la cv que desea exportar en pdf: ")
+            id_do = verifyInt(id_do, "Ingrese el numero de documento de la cv que desea exportar en pdf: ")
+            id_do = str(id_do)
+
+            if id_do in CVs.keys():
+                generar_pdf_cv(CVs[id_do],id_do)
+            else:
+                print(f"Cv con documento {id_do} no encontrado")
+
+
     else:
 
         for key in CVs.keys():
